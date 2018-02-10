@@ -9,7 +9,7 @@ bot.on('ready', () => {
   bot.on('message', (message) => {
     if (message.content === '!rules12345') {
         message.delete()
-        message.send('**Hello. Welcome to Sigma.**')
+        message.channel.send('**Hello. Welcome to Sigma.**')
     }
   });
 
