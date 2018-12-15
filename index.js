@@ -5,7 +5,7 @@ bot.on('ready', () => {
     bot.user.setGame('Sigma') //
   });
 
-
+String rules = new String(Files.readAllBytes(Paths.get(rules.txt)));
 
   bot.on('message', (message) => {
     if (message.content === '!rules12345') {
