@@ -5,12 +5,11 @@ bot.on('ready', () => {
     bot.user.setGame('Sigma') //
   });
 
-  String lines = new String(Files.readAllBytes(Paths.get(rules.txt)));
 
   bot.on('message', (message) => {
     if (message.content === '!rules12345') {
         message.delete()
-        message.channel.send(lines)
+        message.channel.send('beans')
     }
   });
 
