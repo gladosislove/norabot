@@ -25,8 +25,6 @@ bot.on('message', async message => {
 
     if(message.author.bot) return;
 
-    
-
     // flirt command
 
     if (message.content.startsWith(PREFIX + 'flirt')) {
@@ -50,6 +48,18 @@ bot.on('message', async message => {
         message.reply(eightball[Math.floor(Math.random()*eightball.length)])
     }
 
+    // rules command
+    
+    if (message.content.startsWith(PREFIX + 'rules')) {
+        if (!message.member.roles.find('name', 'thot supreme')) {
+            return;
+        }
+        
+        var fs = require("fs");
+        var rules = fs.readFileSync("rules.txt", {"encoding": "utf-8"});
+        message.channel.send(rules)
+        
+    }
 
 });
 
