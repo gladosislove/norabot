@@ -19,6 +19,11 @@ bot.on('ready', () => {
     console.log('Online.')
 });
 
+bot.on('guildMemberAdd', member => {
+    var joinRole = member.guild.roles.find('name', 'members');
+    member.addRole(joinRole)
+});
+
 bot.on('message', async message => {
 
     // avoiding bot spam
@@ -55,11 +60,14 @@ bot.on('message', async message => {
             return;
         }
         
+        message.delete()
+
         var fs = require("fs");
         var rules = fs.readFileSync("rules.txt", {"encoding": "utf-8"});
         message.channel.send(rules)
         
     }
+
 
 });
 
