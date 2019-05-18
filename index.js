@@ -27,6 +27,8 @@ bot.on('message', async message => {
                 
         bot.channels.get('578993596544450561').send({embed});
 
+        message.delete()
+
     };
 
 });
