@@ -6,7 +6,7 @@ const PREFIX = '.'
 
 bot.on('message', async message => {
 
-    if(message.contentstartsWith(PREFIX + 'resource')) {
+    if(message.content.startsWith(PREFIX + 'resource')) {
 
         let userResource = message.content.split(' ').slice(1).join(' ');
 
