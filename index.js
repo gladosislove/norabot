@@ -27,8 +27,8 @@ bot.on('message', async message => {
 
         message.channel.awaitMessages(filter, {max: 1}).then((collected) => {
 
-            let description = collected.content;
-            collected.message.delete()
+            let description = collected.first().content;
+            collected.first().delete()
             return message.channel.send(description)
 
         })
