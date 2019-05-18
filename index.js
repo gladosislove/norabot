@@ -29,7 +29,7 @@ bot.on('message', async message => {
 
                 let description = collected.content
                 collected.delete()
-                collected.reply(description)
+                return message.channel.send(description)
 
             })
     }
