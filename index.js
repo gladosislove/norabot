@@ -30,7 +30,7 @@ bot.on('message', async message => {
             bot.on('message', async message => {
                 let description = message.content
                 message.delete()
-                return message.reply(description)
+                message.reply(description)
             })
         
         });
