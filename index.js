@@ -39,8 +39,8 @@ bot.on('message', async message => {
 
                 message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
-                    let uneditedTags = collected.content.split(' ').toLowerCase;
-                    let tags = uneditedTags.join(', ')
+                    let uneditedTags = collected.content.first().toLowerCase;
+                    let tags = uneditedTags.split(' ').join(', ')
                     collected.first().delete()
 
                     let embed = new Discord.RichEmbed()
