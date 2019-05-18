@@ -24,9 +24,9 @@ bot.on('message', async message => {
         }
 
         message.channel.send('Please enter a description for this resource.').then(() => {
-            message.channel.awaitMessages(filter, {max: 1, time: 25000}).then(collected => {
+            message.channel.awaitMessages(filter, {max: 1, time: 25000}).then(message => {
 
-                let description = collected.content
+                let description = message.content
                 collected.delete()
                 message.channel.send(description)
             
