@@ -29,13 +29,13 @@ bot.on('message', async message => {
 
             let description = collected.first().content;
             collected.first().delete()
-            msg.edit('Please link the resource.')
+            message.reply('Please link the resource.')
 
             message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
                 let link = collected.first().content;
                 collected.first().delete()
-                msg.edit('Add some tags so you can find this later.')
+                message.reply('Add some tags so you can find this later.')
 
                 message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
