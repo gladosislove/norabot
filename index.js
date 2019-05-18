@@ -29,7 +29,32 @@ bot.on('message', async message => {
 
             let description = collected.first().content;
             collected.first().delete()
-            return message.channel.send(description)
+            message.edit('Please link the resource.')
+
+            message.channel.awaitMessages(filer, {max:1}).then((collected) => {
+
+                let link = collected.first().content;
+                collected.first().delete()
+                message.edit('Add some tags so you can find this later.')
+
+                message.channel.awaitMessages(filter, {max:1}).then((collected) => {
+
+                    let uneditedTags = collected.first().content.split(' ').toLowerCase();
+                    let Tags = uneditedTags.join(', ')
+                    collected.first().delete()
+
+                    let embed = new Discord.RichEmbed()
+                        .setTitle(title)
+                        .setDescription(description)
+                        .setColor('#fde13f')
+                        .addField('Link', link, true)
+                        .addField('Tags', tags, true)
+                        .addField('Kicked For', reason)
+                        .setTimestamp();
+                    bot.channels.get('579285970755518475').send({embed});
+
+                })
+            })
 
         })
     }
