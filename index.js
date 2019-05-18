@@ -39,7 +39,7 @@ bot.on('message', async message => {
 
                 message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
-                    let uneditedTags = collected.content.first().toLowerCase;
+                    let uneditedTags = collected.first().content.toLowerCase;
                     let tags = uneditedTags.split(' ').join(', ')
                     collected.first().delete()
 
