@@ -20,35 +20,39 @@ bot.on('message', async message => {
         //if the user hasn't entered a title, leave
 
         if(!title) {
-            return message.reply('Please add a title to the resource before creating it.');
-        }
+            return message.reply('Please add a title to the resource before creating it.').then(msg => {
+                msg.delete(5000)
+            })
+        };
 
         message.reply('Please enter a description for this resource.')
 
         message.channel.awaitMessages(filter, {max: 1}).then((collected) => {
 
             let description = collected.first().content;
-            collected.first().delete()
+            bulkDelete(2); //collected.first().delete()
             message.reply('Please link the resource.')
 
             message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
                 let link = collected.first().content;
-                collected.first().delete()
-                message.reply('Add some tags so you can find this later.')
+                bulkDelete(2);
+                message.reply('Add some keywords to make this post easier to find.')
 
                 message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
-                    let tags = collected.first().content.toLowerCase;
-                    collected.first().delete()
+                    let tags = collected.first().content;
+                    bulkDelete(2);
 
                     let embed = new Discord.RichEmbed()
                         .setTitle(title)
                         .setDescription(description)
                         .setColor('#fde13f')
-                        .addField('Link', link, true)
-                        .addField('Tags', tags, true)
+                        .addField('Link:', link)
+                        .addField('Keywords:', tags)
+                        .addField('Added by:', `@${message.author.tag}`)
                         .setTimestamp();
+
                     bot.channels.get('579285970755518475').send({embed});
 
                 })
