@@ -24,13 +24,13 @@ bot.on('message', async message => {
         }
 
         message.channel.send('Please enter a description for this resource.').then(() => {
-            message.channel.awaitMessages(filter, {max: 1, time: 25000}).then(bot.on('message', async message  => {
+            message.channel.awaitMessages(filter, {max: 1, time: 25000}).then(() => {
 
                 let description = message.content
                 message.delete()
                 return message.channel.send(description)
             
-            }));
+            });
 
         });
 
