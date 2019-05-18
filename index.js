@@ -25,17 +25,14 @@ bot.on('message', async message => {
 
         message.reply('Please enter a description for this resource.')
 
-        message.channel.awaitMessages(filter, {max: 1}).then(() => {
+        message.channel.awaitMessages(filter, {max: 1}).then((collected) => {
 
-            bot.on('message', async message => {
-                let description = message.content
-                message.delete()
-                message.reply(description)
+                let description = collected.content
+                collected.delete()
+                collected.reply(description)
+
             })
-        
-        });
-
-    };
+    }
 
 });
 
