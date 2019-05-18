@@ -20,17 +20,17 @@ bot.on('message', async message => {
         //if the user hasn't entered a title, leave
 
         if(!title) {
-            return message.reply('Please add a title to the resource before creating it.');
+            return message.channel.send('Please add a title to the resource before creating it.');
         }
 
-        message.reply('Please enter a description for this resource.').then(() => {
-            message.channel.awaitMessages(filter, {max: 1, time: 25000}).then(message => {
+        message.channel.send('Please enter a description for this resource.').then(() => {
+            message.channel.awaitMessages(filter, {max: 1, time: 25000}).then(bot.on('message', async message  => {
 
                 let description = message.content
                 message.delete()
-                return message.reply(description)
+                return message.channel.send(description)
             
-            });
+            }));
 
         });
 
