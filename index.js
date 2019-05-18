@@ -27,7 +27,7 @@ bot.on('message', async message => {
             message.channel.awaitMessages(filter, {max: 1, time: 25000}).then(message => {
 
                 let description = message.content
-                collected.delete()
+                message.delete()
                 message.channel.send(description)
             
             });
