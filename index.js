@@ -6,28 +6,18 @@ const PREFIX = '.'
 
 bot.on('message', async message => {
 
-    if(message.content.startsWith(PREFIX + 'resource')) {
+    if(message.content.startsWith(PREFIX + 'resource create')) {
 
-        let userResource = message.content.split(' ').slice(1).join(' ');
+        let cont = message.content.slice(PREFIX.length).split(' ');
+        let args = cont.slice(2);
+        let title = args.slice(2).join(' ');
 
-        if (!message.content.find(', ')) {
-            message.channel.send('Hold on a second! Please separate your fields using the "," key.');
-            return;
+        if(!title) {
+            message.channel.send('Please add a title to the resource before creating it.')
         }
 
-        let userArray = userResource.split(', ')
-            
-
-        let embed = new Discord.RichEmbed()
-                    .setTitle('New Resource')
-                    .setDescription(`Added by @${message.author.tag}`)
-                    .setColor('#ffd63c')
-                    .addField(userArray[1], userArray[2], true)
-                    .setTimestamp();
-                
-        bot.channels.get('578993596544450561').send({embed});
-
         message.delete()
+        message.channel.send(title)
 
     };
 
