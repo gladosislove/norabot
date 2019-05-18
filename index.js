@@ -29,18 +29,18 @@ bot.on('message', async message => {
 
             let description = collected.first().content;
             collected.first().delete()
-            message.edit('Please link the resource.')
+            msg.edit('Please link the resource.')
 
-            message.channel.awaitMessages(filer, {max:1}).then((collected) => {
+            message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
                 let link = collected.first().content;
                 collected.first().delete()
-                message.edit('Add some tags so you can find this later.')
+                msg.edit('Add some tags so you can find this later.')
 
                 message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
                     let uneditedTags = collected.first().content.split(' ').toLowerCase();
-                    let Tags = uneditedTags.join(', ')
+                    let tags = uneditedTags.join(', ')
                     collected.first().delete()
 
                     let embed = new Discord.RichEmbed()
@@ -49,7 +49,6 @@ bot.on('message', async message => {
                         .setColor('#fde13f')
                         .addField('Link', link, true)
                         .addField('Tags', tags, true)
-                        .addField('Kicked For', reason)
                         .setTimestamp();
                     bot.channels.get('579285970755518475').send({embed});
 
