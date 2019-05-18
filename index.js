@@ -9,8 +9,8 @@ bot.on('message', async message => {
     if(message.content.startsWith(PREFIX + 'resource create')) {
 
         let cont = message.content.slice(PREFIX.length).split(' ');
-        let args = cont.slice(2);
-        let title = args.slice(2).join(' ');
+        let args = cont.slice(1);
+        let title = args.slice(1).join(' ');
 
         if(!title) {
             message.channel.send('Please add a title to the resource before creating it.')
