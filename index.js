@@ -28,9 +28,10 @@ bot.on('message', async message => {
 
                 let description = message.content
                 message.delete()
-                message.channel.send(description)
+                return message.channel.send(description)
             
             });
+
         });
 
     };
