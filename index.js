@@ -30,19 +30,19 @@ bot.on('message', async message => {
         message.channel.awaitMessages(filter, {max: 1}).then((collected) => {
 
             let description = collected.first().content;
-            bulkDelete(2); //collected.first().delete()
+            message.channel.bulkDelete(2); //collected.first().delete()
             message.reply('Please link the resource.')
 
             message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
                 let link = collected.first().content;
-                bulkDelete(2);
+                message.channel.bulkDelete(2);
                 message.reply('Add some keywords to make this post easier to find.')
 
                 message.channel.awaitMessages(filter, {max:1}).then((collected) => {
 
                     let tags = collected.first().content;
-                    bulkDelete(2);
+                    message.channel.bulkDelete(2);
 
                     let embed = new Discord.RichEmbed()
                         .setTitle(title)
